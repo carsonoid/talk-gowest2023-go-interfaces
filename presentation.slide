@@ -1,0 +1,123 @@
+# Go Interface Tips
+
+
+Carson Anderson
+DevX-O, Weave
+https://github.com/carsonoid/talk-gowest2023-go-interfaces
+
+
+## Interface Basics
+
+## Interface Basics
+
+* **Interfaces describe what something can do**
+
+## Interfaces describe what something can do
+
+.play basics.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Interfaces describe what something can do
+
+.play basics-interface.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Interface Basics
+
+* Interfaces describe what something can do
+* **Interfaces are duck typed**
+
+## Interfaces are duck typed
+
+.play basics-interface-duck.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## TIP: You can get compile-time failures for unimplemented interfaces
+
+.play interface-unimplemented.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## TIP: You can get compile-time failures for unimplemented interfaces
+
+.play interface-hint.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Interface Basics
+
+* Interfaces describe what something can do
+* Interfaces are duck typed
+* **Interfaces can be embedded**
+
+## Interfaces can be embedded
+
+.play interface-embedding.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Quick Interface Tips
+
+## Tip: Error is an interface
+
+## Tip: Error is an interface
+
+We all know about the common helpers for creating errors
+
+.play error.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Tip: Error is an interface
+
+What is an error actually made of?
+
+> // The error built-in interface type is the conventional interface for
+> // representing an error condition, with the nil value representing no error.
+
+.code error.go /START ERR OMIT/,/END ERR OMIT/
+
+## Tip: Error is an interface
+
+We can make our own! Just implement `func Error() string`
+
+.play error-custom.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Tip: Error is an interface
+
+Make custom error types to handle common error metadata
+
+.code error-custom3.go /START ERR OMIT/,/END ERR OMIT/
+
+## Tip: Error is an interface
+
+.play error-custom3.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Tip: Keep interfaces small
+
+## Tip: Keep interfaces small
+
+While big interfaces seems great, it can make mocking difficult and reduces the reusability of the interface because it any provider has to implement *all* the things
+
+.code interface-big.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Tip: Keep interfaces small
+
+Instead, use embedding to compose many small interfaces into one.
+
+.code interface-big-fixed.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Tip: Don't return interfaces
+
+## Tip: Don't return interfaces
+
+.code interface-return.go /START MAIN OMIT/,/END MAIN OMIT/
+
+## Tip: Don't return interfaces
+
+.play interface-return.go /START GETGREETER OMIT/,/END GETGREETER OMIT/
+
+## Tip: Don't return interfaces
+
+.play interface-return-fixed.go /START GETGREETER OMIT/,/END GETGREETER OMIT/
+
+## Tip: Don't return interfaces
+
+Exception: What if we have multiple possible implementations?
+
+.code interface-return-exception.go /START GETGREETER OMIT/,/END GETGREETER OMIT/
+
+## Tip: Don't return interfaces
+
+This is a good case for returning an interface
+
+.play interface-return-exception.go /START MAIN OMIT/,/END MAIN OMIT/
